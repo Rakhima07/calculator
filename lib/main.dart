@@ -30,8 +30,6 @@ class CalculatorPage extends StatefulWidget {
 class _CalculatorPageState extends State<CalculatorPage> {
   String _input = '';
   String _result = '';
-
-  // Метод для обработки нажатий
   void _onButtonPressed(String value) {
     setState(() {
       if (value == 'C') {
@@ -59,7 +57,6 @@ class _CalculatorPageState extends State<CalculatorPage> {
 
   @override
   Widget build(BuildContext context) {
-    // Кнопки калькулятора
     final buttons = [
       'C', '⌫', '÷', '×',
       '7', '8', '9', '-',
@@ -72,12 +69,12 @@ class _CalculatorPageState extends State<CalculatorPage> {
       appBar: AppBar(title: const Text('Калькулятор')),
       body: Center(
         child: Container(
-          width: 350, // Фиксированная ширина
-          height: 600, // Увеличил высоту до 600
+          width: 350, 
+          height: 700, 
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              // Поле ввода
+            
               Container(
                 padding: const EdgeInsets.all(20),
                 alignment: Alignment.centerRight,
@@ -86,7 +83,6 @@ class _CalculatorPageState extends State<CalculatorPage> {
                   style: const TextStyle(fontSize: 32, color: Colors.white70),
                 ),
               ),
-              // Поле результата
               Container(
                 padding: const EdgeInsets.all(20),
                 alignment: Alignment.centerRight,
@@ -96,13 +92,11 @@ class _CalculatorPageState extends State<CalculatorPage> {
                 ),
               ),
               const Divider(),
-
-              // Сетка кнопок
               Expanded(
                 child: GridView.builder(
                   itemCount: buttons.length,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 4, // 4 кнопки в строке
+                    crossAxisCount: 4,
                   ),
                   itemBuilder: (context, index) {
                     final buttonText = buttons[index];
@@ -123,7 +117,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
 
 
                               color: isOperator ? Colors.white : Colors.white70,
-                              fontWeight: FontWeight.w700,
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
                         ),
