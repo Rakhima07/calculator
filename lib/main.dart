@@ -1,6 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:math_expressions/math_expressions.dart';
+import 'Second.dart'; // твой файл с AboutMeText
 
 void main() {
   runApp(const CalculatorApp());
@@ -30,15 +30,14 @@ class CalculatorPage extends StatefulWidget {
 class _CalculatorPageState extends State<CalculatorPage> {
   String _input = '';
   String _result = '';
+
   void _onButtonPressed(String value) {
     setState(() {
       if (value == 'C') {
         _input = '';
         _result = '';
       } else if (value == '⌫') {
-        if (_input.isNotEmpty) {
-          _input = _input.substring(0, _input.length - 1);
-        }
+        if (_input.isNotEmpty) _input = _input.substring(0, _input.length - 1);
       } else if (value == '=') {
         try {
           Parser parser = Parser();
@@ -62,19 +61,31 @@ class _CalculatorPageState extends State<CalculatorPage> {
       '7', '8', '9', '-',
       '4', '5', '6', '+',
       '1', '2', '3', '=',
-      '0', '.', 
+      '0', '.',
     ];
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Калькулятор')),
+      appBar: AppBar(
+        title: const Text('Калькулятор'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.person),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const AboutMeText()),
+              );
+            },
+          ),
+        ],
+      ),
       body: Center(
         child: Container(
-          width: 350, 
-          height: 700, 
+          width: 350,
+          height: 700,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-            
               Container(
                 padding: const EdgeInsets.all(20),
                 alignment: Alignment.centerRight,
@@ -114,8 +125,6 @@ class _CalculatorPageState extends State<CalculatorPage> {
                           child: Text(
                             buttonText,
                             style: TextStyle(
-
-
                               color: isOperator ? Colors.white : Colors.white70,
                               fontWeight: FontWeight.w600,
                             ),
